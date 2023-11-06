@@ -1,0 +1,22 @@
+@use "src/styles/main.scss" as *;
+
+.button {
+  @include fontFamilyClass;
+  min-height: toRem(40);
+  width: 100%;
+  border-radius: toRem(8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: toRem(14);
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  background-color: $blue-7;
+  color: $white;
+  padding: toRem(12) toRem(16);
+
+  &:disabled {
+    cursor: not-allowed;    
+  }
+}
