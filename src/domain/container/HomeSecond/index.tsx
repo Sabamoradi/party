@@ -2,6 +2,8 @@ import styles from "./style.module.scss";
 import Button from "../../../components/Button";
 import { localTexts } from "../../../locals/text";
 
+const img = require('../../../assets/images/svg/checklist.svg').default;
+
 const HomeSecond = () => {
   return (
     <div className={styles.home_second_container}>
@@ -12,6 +14,7 @@ const HomeSecond = () => {
           <Button title={localTexts.createNewEvent} />
         </div>
         <div className={styles.right}>
+          <img src={img} alt="img"/>
         </div>
       </div>
     </div>
