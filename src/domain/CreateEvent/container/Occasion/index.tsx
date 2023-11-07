@@ -6,12 +6,15 @@ import Button from "../../../../components/Button";
 
 const Occasion = () => {
   const [Brcolor, setBrColor] = useState(-1);
+  const [occasionType, setOccasionType] = useState("");
 
-  const changeColor = (id: number) => {
+  const changeColor = (id: number, title: string) => {
     if (id === Brcolor) {
       setBrColor(-1);
+      setOccasionType("");
     } else {
       setBrColor(id);
+      setOccasionType(title);
     }
   };
 
@@ -27,7 +30,7 @@ const Occasion = () => {
               <li
                 className={styles.item_wrapper}
                 key={el.id}
-                onClick={() => changeColor(el.id)}
+                onClick={() => changeColor(el.id, el.title)}
               >
                 <div
                   className={styles.item}
@@ -47,7 +50,10 @@ const Occasion = () => {
         </ul>
       </div>
       <div className={styles.btn_wrapper}>
-        <Button title={localTexts.next} />
+        <Button
+          title={localTexts.next}
+          disabled={occasionType ? false : true}
+        />
       </div>
     </div>
   );
