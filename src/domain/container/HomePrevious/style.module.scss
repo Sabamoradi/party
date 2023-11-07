@@ -1,0 +1,46 @@
+@use "src/styles/main.scss" as *;
+
+.previous_container {
+  margin-top: toRem(24);
+  .previous_items {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    .previous_item {
+      width: 48%;
+      min-height: toRem(128);
+      margin-bottom: toRem(16);
+      .img_wrapper {
+        border: 1px solid #d898ff;
+        padding: 6px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: toRem(32);
+        height: toRem(32);
+      }
+      .name {
+        font-size: toTem(14);
+        font-weight: 700;
+        margin: toRem(8) 0;
+      }
+      .time_wrapper {
+        .date , .time {
+          font-size: toRem(14);
+          font-weight: 400;
+          color: $gray-ad;
+        }
+        .time{
+          margin-top: toRem(8)
+        }
+      }
+      .previous_item_wrap {
+        @include greyBox;
+      }
+    }
+  }
+}
