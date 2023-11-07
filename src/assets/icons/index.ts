@@ -8,6 +8,7 @@ import { ReactComponent as Medium } from "../images/svg/medium.svg";
 import { ReactComponent as MeetUp } from "../images/svg/meetup.svg";
 import { ReactComponent as Other } from "../images/svg/other.svg";
 import { ReactComponent as Small } from "../images/svg/small.svg";
+import {ReactComponent as BackIcon} from "../images/svg/backIcon.svg";
 
 
 
@@ -21,5 +22,6 @@ export {
     Medium,
     MeetUp,
     Other,
-    Small
+    Small,
+    BackIcon
 };

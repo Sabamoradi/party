@@ -1,17 +1,18 @@
+import { useNavigate } from 'react-router-dom';
 import styles from "./style.module.scss";
 import Button from "../../../../components/Button";
 import { localTexts } from "../../../../locals/text";
-
 const img = require('../../../../assets/images/svg/checklist.svg').default;
 
 const HomeSecond = () => {
+  const navigate = useNavigate()
   return (
     <div className={styles.home_second_container}>
       <div className={styles.home_card_wrapper}>
         <div className={styles.left}>
           <h6>{localTexts.noHouseParty}</h6>
           <p>{localTexts.planYourParty}</p>
-          <Button title={localTexts.createNewEvent} />
+          <Button title={localTexts.createNewEvent} onClick={() => navigate('/create')} />
         </div>
         <div className={styles.right}>
           <img src={img} alt="img"/>

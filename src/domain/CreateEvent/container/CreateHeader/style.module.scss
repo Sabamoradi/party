@@ -1,0 +1,15 @@
+@use "src/styles/main.scss" as *;
+
+.header_container {
+    margin-top: toRem(18);
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    i{
+        display: flex;
+        align-items: center;
+        padding-right: toRem(8);
+    }
+  }
+}
