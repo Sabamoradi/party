@@ -1,0 +1,71 @@
+@use "src/styles/main.scss" as *;
+
+.header_counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: toRem(17);
+  padding-bottom: toRem(16);
+  border-bottom: 1px solid $grey-31;
+  .left {
+    .name {
+      font-size: toRem(16);
+      font-weight: 700;
+    }
+    .date {
+      font-size: toRem(12);
+      font-weight: 400;
+      margin-top: toRem(8);
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    .right_item {
+      .days {
+        font-size: toRem(16);
+        font-weight: 700;
+      }
+      .title {
+        font-size: toRem(12);
+        font-weight: 400;
+        margin-top: toRem(8);
+      }
+      &:first-child {
+        padding-right: toRem(32);
+      }
+    }
+  }
+}
+
+.check_items {
+  ul {
+    list-style: none;
+    width: 100%;
+    .check_item {
+      width: 100%;
+      height: toRem(64);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: toRem(16);
+      .wrapper {
+        @include greyBox;
+        .check_box {
+          padding-right: toRem(16);
+        }
+        .text_wrapper {
+          .title {
+            font-size: toRem(14);
+            font-weight: 700;
+          }
+          .desc {
+            font-size: toRem(12);
+            font-weight: 400;
+            margin-top: toRem(8);
+          }
+        }
+      }
+    }
+  }
+}
