@@ -1,6 +1,5 @@
 import styles from "./style.module.scss";
-import { localTexts } from "../../../locals/text";
-import { Cake } from "../../../assets/icons";
+import { Cake } from "../../../../assets/icons";
 
 const HomePrevious = () => {
   return (

@@ -1,5 +1,5 @@
 import styles from './style.module.scss';
-import { Profile } from '../../../assets/icons';
+import { Profile } from '../../../../assets/icons';
 
 const HomeHeader = () =>{
   return(

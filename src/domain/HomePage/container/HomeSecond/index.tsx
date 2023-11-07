@@ -1,8 +1,8 @@
 import styles from "./style.module.scss";
-import Button from "../../../components/Button";
-import { localTexts } from "../../../locals/text";
+import Button from "../../../../components/Button";
+import { localTexts } from "../../../../locals/text";
 
-const img = require('../../../assets/images/svg/checklist.svg').default;
+const img = require('../../../../assets/images/svg/checklist.svg').default;
 
 const HomeSecond = () => {
   return (
