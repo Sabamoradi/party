@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiBaseURL = 'https://api.bitpin.ir/v1';
+const apiBaseURL = '';
 
 export const httpService = axios.create({
   baseURL: apiBaseURL,
