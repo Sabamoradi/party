@@ -2,6 +2,7 @@ import styles from "./style.module.scss";
 import { localTexts } from "../../../../locals/text";
 import { occasion } from "../../../../configs/occasion";
 import { useState } from "react";
+import Button from "../../../../components/Button";
 
 const Occasion = () => {
   const [Brcolor, setBrColor] = useState(-1);
@@ -32,8 +33,7 @@ const Occasion = () => {
                   className={styles.item}
                   style={{
                     borderColor: el.id === Brcolor ? `${el.borderColor}` : "",
-                    backgroundColor:
-                      el.id === Brcolor ? `${el.borderColor}` : "",
+                    backgroundColor: el.id === Brcolor ? `${el.bgColor}` : "",
                   }}
                 >
                   <i>
@@ -45,6 +45,9 @@ const Occasion = () => {
             );
           })}
         </ul>
+      </div>
+      <div className={styles.btn_wrapper}>
+        <Button title={localTexts.next} />
       </div>
     </div>
   );

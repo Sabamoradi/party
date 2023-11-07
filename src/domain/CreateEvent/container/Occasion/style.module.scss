@@ -46,4 +46,13 @@
       }
     }
   }
+  .btn_wrapper{
+    position: fixed;
+    width: 100%;
+    height: toRem(40);
+    bottom: toRem(24);
+    left: 0;
+    right: 0;
+    padding: 0 toRem(16);
+  }
 }

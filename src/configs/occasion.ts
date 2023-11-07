@@ -10,8 +10,8 @@ export const occasion = [
     id: 2,
     title: "Anniversary",
     icon: require("../assets/images/svg/anniversary.svg").default,
-    borderColor: "#ff9a981c",
-    bgColor: "#271C1B",
+    borderColor: "#FF9A98",
+    bgColor: "#ff9a981c",
   },
   {
     id: 3,
