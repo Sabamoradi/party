@@ -1,6 +1,5 @@
 import CreateHeader from "./container/CreateHeader";
-import FirstStep from "./container/FirstStep";
-import Occasion from "./container/Occasion";
+import FirstSteps from "./container/FirstSteps";
 import styles from "./style.module.scss";
 import { occasion } from "../../configs/occasion";
 import { guestList } from "../../configs/guestList";
@@ -12,8 +11,8 @@ const CreateEvent = () => {
   return (
     <div className={styles.create_container}>
       <CreateHeader />
-      {/* <FirstStep listData={occasion} pageTitle={localTexts.occasion} /> */}
-      <FirstStep listData={guestList} pageTitle={localTexts.guestList} />
+      {/* <FirstSteps listData={occasion} pageTitle={localTexts.occasion} /> */}
+      <FirstSteps listData={guestList} pageTitle={localTexts.guestList} />
       {/* <ThirdSteps
         title={eInvite.title}
         img={eInvite.img}
