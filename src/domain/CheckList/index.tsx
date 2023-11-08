@@ -1,6 +1,10 @@
 import styles from "./style.module.scss";
+import { checkList } from "../../configs/checkList";
 
 const CheckList = () => {
+  const checkItem = (id: number, selected: boolean | undefined) => {
+    const data = checkList.find(element => element.id === id);
+  };
   return (
     <div className={styles.check_container}>
       <div className={styles.header_counter}>
@@ -22,15 +26,33 @@ const CheckList = () => {
 
       <div className={styles.check_items}>
         <ul>
-          <li className={styles.check_item}>
-            <div className={styles.wrapper}>
-              <div className={styles.check_box}></div>
-              <div className={styles.text_wrapper}>
-                <p className={styles.title}>Create an e-invite</p>
-                <p className={styles.desc}>Tap to create an e-invite </p>
-              </div>
-            </div>
-          </li>
+          {checkList.map(el => {
+            return (
+              <li className={styles.check_item} key={el.id}>
+                <div className={styles.wrapper}>
+                  <div className={styles.check_box}>
+                    <span
+                      className={`${styles.check_box_item} ${el.selected
+                        ? styles.selected_item
+                        : ""}`}
+                      onClick={() => checkItem(el.id, el.selected)}
+                    >
+                      <i />
+                    </span>
+                  </div>
+                  <div className={styles.text_wrapper}>
+                    <p className={styles.title}>
+                      {el.title}
+                    </p>
+                    {el.description &&
+                      <p className={styles.desc}>
+                        {el.description}
+                      </p>}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

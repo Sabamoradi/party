@@ -12,13 +12,13 @@ const CreateEvent = () => {
   return (
     <div className={styles.create_container}>
       <CreateHeader />
-      {/* <FirstStep listData={occasion} pageTitle={localTexts.occasion}/> */}
-      {/* <FirstStep listData={guestList} pageTitle={localTexts.guestList}/> */}
-      <ThirdSteps
+      {/* <FirstStep listData={occasion} pageTitle={localTexts.occasion} /> */}
+      <FirstStep listData={guestList} pageTitle={localTexts.guestList} />
+      {/* <ThirdSteps
         title={eInvite.title}
         img={eInvite.img}
         items={eInvite.items}
-      />
+      /> */}
     </div>
   );
 };

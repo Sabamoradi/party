@@ -44,15 +44,28 @@
     width: 100%;
     .check_item {
       width: 100%;
-      height: toRem(64);
+      min-height: toRem(45);
       display: flex;
       align-items: center;
       justify-content: flex-start;
       margin-top: toRem(16);
       .wrapper {
         @include greyBox;
+        display: flex;
+        align-items: flex-start;
         .check_box {
           padding-right: toRem(16);
+          .check_box_item {
+            display: block;
+            width: toRem(16);
+            height: toRem(16);
+            border: 1px solid $white;
+            border-radius: toRem(4);
+            background-color: transparent;
+            &.selected_item {
+              background-color: $white;
+            }
+          }
         }
         .text_wrapper {
           .title {
