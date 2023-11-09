@@ -38,7 +38,7 @@ const ThirdSteps = (props: Props) => {
     if (select_step === "7") {
       arrangeData();
       navigate("/");
-      dispatch(set_StepEvent(0));
+      dispatch(set_StepEvent("0"));
     } else {
       dispatch(set_StepEvent((Number(select_step) + 1).toString()));
       setchangeStyle(-1);
