@@ -17,7 +17,16 @@ interface Props {
   title: string;
   items: Item[];
 }
-
+interface eventsItem {
+  dataId: number | null;
+  occasion: string | null;
+  guestList: string | null;
+  eInvite: string | null;
+  arrangements: string | null;
+  alcohol: string | null;
+  decorator: string | null;
+  games: string | null;
+}
 const ThirdSteps = (props: Props) => {
   const { img, title, items } = props;
   const [changeStyle, setchangeStyle] = useState(-1);
@@ -27,20 +36,28 @@ const ThirdSteps = (props: Props) => {
   const navigate = useNavigate();
   const setData = () => {
     if (select_step === "7") {
-      arrangeData()
+      arrangeData();
       navigate("/");
+      dispatch(set_StepEvent(0));
+    } else {
+      dispatch(set_StepEvent((Number(select_step) + 1).toString()));
+      setchangeStyle(-1);
+      setSelectedItem("");
     }
-    dispatch(set_StepEvent((Number(select_step) + 1).toString()));
   };
   const arrangeData = () => {
-    let eventsItem = [];
+    let checkArrayLength: any = localStorage.getItem("eventsItem");
+    let eventsItem: eventsItem[] = JSON.parse(checkArrayLength) || [];
+
     const data = {
+      dataId: eventsItem ? eventsItem.length : 0,
       occasion: sessionStorage.getItem("occasion"),
       guestList: sessionStorage.getItem("guestList"),
       eInvite: sessionStorage.getItem("eInvite"),
       arrangements: sessionStorage.getItem("arrangements"),
       alcohol: sessionStorage.getItem("alcohol"),
       decorator: sessionStorage.getItem("decorator"),
+      games: sessionStorage.getItem("games"),
     };
     eventsItem.push(data);
 

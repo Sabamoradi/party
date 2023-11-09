@@ -40,6 +40,8 @@ const FirstStep = (props: Props) => {
 
   const setData = () => {
     dispatch(set_StepEvent((Number(select_step) + 1).toString()));
+    setBrColor(-1);
+    setOccasionType("");
   };
 
   return (

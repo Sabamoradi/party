@@ -26,9 +26,7 @@ const CreateEvent = () => {
         return (
           <FirstSteps listData={occasion} pageTitle={localTexts.occasion} />
         );
-      case "1":
-        console.log("omad");
-
+      case "1": 
         return (
           <FirstSteps listData={guestList} pageTitle={localTexts.guestList} />
         );
