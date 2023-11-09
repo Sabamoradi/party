@@ -2,12 +2,14 @@ import styles from "./style.module.scss";
 import { localTexts } from "../../../../locals/text";
 import Button from "../../../../components/Button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
 import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
 
 interface Item {
   id: number;
   title: string;
+  sessionTitle: string;
 }
 
 interface Props {
@@ -22,17 +24,37 @@ const ThirdSteps = (props: Props) => {
   const [selectedItem, setSelectedItem] = useState("");
   const dispatch = useAppDispatch();
   const select_step = useAppSelector(selectStep_Event);
+  const navigate = useNavigate();
   const setData = () => {
+    if (select_step === "7") {
+      arrangeData()
+      navigate("/");
+    }
     dispatch(set_StepEvent((Number(select_step) + 1).toString()));
   };
+  const arrangeData = () => {
+    let eventsItem = [];
+    const data = {
+      occasion: sessionStorage.getItem("occasion"),
+      guestList: sessionStorage.getItem("guestList"),
+      eInvite: sessionStorage.getItem("eInvite"),
+      arrangements: sessionStorage.getItem("arrangements"),
+      alcohol: sessionStorage.getItem("alcohol"),
+      decorator: sessionStorage.getItem("decorator"),
+    };
+    eventsItem.push(data);
 
-  const checkItem = (id: number, title: string) => {
+    let eventsItemMock = JSON.stringify(eventsItem);
+    localStorage.setItem("eventsItem", eventsItemMock);
+  };
+  const checkItem = (id: number, title: string, sessionTitle: string) => {
     if (id === changeStyle) {
       setchangeStyle(-1);
       setSelectedItem("");
     } else {
       setchangeStyle(id);
       setSelectedItem(title);
+      sessionStorage.setItem(sessionTitle, title);
     }
   };
 
@@ -49,7 +71,7 @@ const ThirdSteps = (props: Props) => {
               <li
                 key={el.id}
                 onClick={() => {
-                  checkItem(el.id, el.title);
+                  checkItem(el.id, el.title, el.sessionTitle);
                 }}
               >
                 <div

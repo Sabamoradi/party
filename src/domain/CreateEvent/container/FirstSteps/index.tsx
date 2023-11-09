@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
 import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
 
 interface Data {
+  sessionTitle: string;
   id: number;
   title: string;
   icon: string;
@@ -26,13 +27,14 @@ const FirstStep = (props: Props) => {
   const dispatch = useAppDispatch();
   const select_step = useAppSelector(selectStep_Event);
 
-  const changeColor = (id: number, title: string) => {
+  const changeColor = (id: number, title: string, sessionTitle: string) => {
     if (id === Brcolor) {
       setBrColor(-1);
       setOccasionType("");
     } else {
       setBrColor(id);
       setOccasionType(title);
+      sessionStorage.setItem(sessionTitle, title);
     }
   };
 
@@ -43,7 +45,6 @@ const FirstStep = (props: Props) => {
   return (
     <div className={styles.first_container}>
       <div className={styles.header}>
-        {/* <p>{localTexts.occasion}</p> */}
         <p>{pageTitle}</p>
       </div>
       <div className={styles.items_wrapper}>
@@ -53,7 +54,7 @@ const FirstStep = (props: Props) => {
               <li
                 className={styles.item_wrapper}
                 key={el.id}
-                onClick={() => changeColor(el.id, el.title)}
+                onClick={() => changeColor(el.id, el.title, el.sessionTitle)}
               >
                 <div
                   className={styles.item}

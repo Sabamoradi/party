@@ -1,6 +1,7 @@
 export const guestList = [
     {
       id: 1,
+      sessionTitle:'guestList',
       title: "Small",
       description:"(4-20) guests",
       icon: require("../assets/images/svg/small.svg").default,
@@ -9,6 +10,7 @@ export const guestList = [
     },
     {
       id: 2,
+      sessionTitle:'guestList',
       title: "Medium",
       description:"(20-60) guests",
       icon: require("../assets/images/svg/medium.svg").default,
@@ -17,6 +19,7 @@ export const guestList = [
     },
     {
       id: 3,
+      sessionTitle:'guestList',
       title: "Large",
       description:"(60+) guests",
       icon: require("../assets/images/svg/large.svg").default,
