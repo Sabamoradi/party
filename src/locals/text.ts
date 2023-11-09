@@ -6,5 +6,7 @@ export const localTexts = {
   next: "NEXT",
   guestList: "What is the size of the guest list?",
   eventName: "Event Name",
-  Date:"Date"
+  Date:"Date",
+  Hour:'Hour',
+  Minutes:'Minutes'
 };

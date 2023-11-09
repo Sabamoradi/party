@@ -5,7 +5,7 @@ interface Props {
   placeholder?: string;
   type: string;
   inputClassName?: string;
-  labelTitle: string;
+  labelTitle?: string;
   inputWrapperClass?:string
 }
 

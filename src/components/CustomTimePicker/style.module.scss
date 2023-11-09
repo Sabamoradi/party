@@ -1,0 +1,10 @@
+@use "src/styles/main.scss" as *;
+
+.time_wrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  .custom_wrapper{
+    width: 30%;
+  }
+}
