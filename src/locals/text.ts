@@ -5,5 +5,6 @@ export const localTexts = {
   occasion: "What is the occasion?",
   next: "NEXT",
   guestList: "What is the size of the guest list?",
-  eventName: "Event Name"
+  eventName: "Event Name",
+  Date:"Date"
 };

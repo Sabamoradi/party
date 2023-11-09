@@ -6,12 +6,13 @@ interface Props {
   type: string;
   inputClassName?: string;
   labelTitle: string;
+  inputWrapperClass?:string
 }
 
 function Input(props: Props) {
-  const { placeholder, type, inputClassName, labelTitle } = props;
+  const { placeholder, type, inputClassName, labelTitle ,inputWrapperClass } = props;
   return (
-    <div className={styles.input_wrapper}>
+    <div className={`${styles.input_wrapper} ${inputWrapperClass}`}>
       <div className={styles.label_text}>
         <p>
           {labelTitle}
