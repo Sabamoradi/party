@@ -2,6 +2,8 @@ import styles from "./style.module.scss";
 import { localTexts } from "../../../../locals/text";
 import Button from "../../../../components/Button";
 import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
+import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
 
 interface Item {
   id: number;
@@ -18,6 +20,11 @@ const ThirdSteps = (props: Props) => {
   const { img, title, items } = props;
   const [changeStyle, setchangeStyle] = useState(-1);
   const [selectedItem, setSelectedItem] = useState("");
+  const dispatch = useAppDispatch();
+  const select_step = useAppSelector(selectStep_Event);
+  const setData = () => {
+    dispatch(set_StepEvent((Number(select_step) + 1).toString()));
+  };
 
   const checkItem = (id: number, title: string) => {
     if (id === changeStyle) {
@@ -59,7 +66,11 @@ const ThirdSteps = (props: Props) => {
       </div>
 
       <div className={styles.btn_wrapper}>
-        <Button title={localTexts.next} disabled={selectedItem ? false : true} />
+        <Button
+          title={localTexts.next}
+          disabled={selectedItem ? false : true}
+          onClick={() => setData()}
+        />
       </div>
     </div>
   );

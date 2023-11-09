@@ -2,6 +2,8 @@ import styles from "./style.module.scss";
 import { localTexts } from "../../../../locals/text";
 import { useState } from "react";
 import Button from "../../../../components/Button";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
+import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
 
 interface Data {
   id: number;
@@ -9,7 +11,7 @@ interface Data {
   icon: string;
   borderColor: string;
   bgColor: string;
-  description?:string;
+  description?: string;
 }
 interface Props {
   pageTitle: string;
@@ -21,6 +23,8 @@ const FirstStep = (props: Props) => {
   const { pageTitle, listData } = props;
   const [Brcolor, setBrColor] = useState(-1);
   const [occasionType, setOccasionType] = useState("");
+  const dispatch = useAppDispatch();
+  const select_step = useAppSelector(selectStep_Event);
 
   const changeColor = (id: number, title: string) => {
     if (id === Brcolor) {
@@ -30,6 +34,10 @@ const FirstStep = (props: Props) => {
       setBrColor(id);
       setOccasionType(title);
     }
+  };
+
+  const setData = () => {
+    dispatch(set_StepEvent((Number(select_step) + 1).toString()));
   };
 
   return (
@@ -58,11 +66,9 @@ const FirstStep = (props: Props) => {
                     <img src={el.icon} alt={el.title} />
                   </i>
                   <p>{el.title}</p>
-                  {
-                    el.description && <p className={styles.desc}>
-                      {el.description}
-                    </p>
-                  }
+                  {el.description && (
+                    <p className={styles.desc}>{el.description}</p>
+                  )}
                 </div>
               </li>
             );
@@ -73,6 +79,7 @@ const FirstStep = (props: Props) => {
         <Button
           title={localTexts.next}
           disabled={occasionType ? false : true}
+          onClick={() => setData()}
         />
       </div>
     </div>
