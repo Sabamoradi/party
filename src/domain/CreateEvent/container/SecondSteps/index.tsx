@@ -3,11 +3,11 @@ import Input from "../../../../components/Input";
 import { localTexts } from "../../../../locals/text";
 import { useState } from "react";
 import CustomDatePicker from "../../../../components/DatePicker";
-import { DayValue, DayRange, Day } from "react-modern-calendar-datepicker";
+// import { DayValue, DayRange, Day } from "react-modern-calendar-datepicker";
 import CustomTimePicker from "../../../../components/CustomTimePicker";
 
 const SecondSteps = () => {
-  const [selectedDay, setSelectedDay] = useState<DayValue | null>(null);
+  // const [selectedDay, setSelectedDay] = useState<DayValue | null>(null);
 
   return (
     <div className={styles.second_container}>
@@ -17,8 +17,6 @@ const SecondSteps = () => {
         labelTitle={localTexts.Date}
         selectedDate={selectedDay}
         setSelectedDate={setSelectedDay}
-
-        
       /> */}
 
       <CustomTimePicker />

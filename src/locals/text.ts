@@ -8,5 +8,7 @@ export const localTexts = {
   eventName: "Event Name",
   Date:"Date",
   Hour:'Hour',
-  Minutes:'Minutes'
+  Minutes:'Minutes',
+  Time:'Time',
+  hourAndMinutes:'HH:MM'
 };
