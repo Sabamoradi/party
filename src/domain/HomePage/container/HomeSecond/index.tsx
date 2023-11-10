@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { eventsItem } from "../../../../configs/type";
 import { useAppSelector } from "../../../../hooks/useDispatch";
 import { selectLater_Events } from "../../../../store/Event/slice";
+import moment from "moment";
 
 const img = require("../../../../assets/images/svg/checklist.svg").default;
 const calenderImg = require("../../../../assets/images/svg/date.svg").default;
@@ -14,6 +15,14 @@ const calenderImg = require("../../../../assets/images/svg/date.svg").default;
 const HomeSecond = () => {
   const navigate = useNavigate();
   const laterEvents = useAppSelector(selectLater_Events);
+
+  const getDays = (date: string | null) => {
+    const dayNumber = moment(`${date}`, "YYYY-MM-DD").format("DD");
+    const todayDay = moment(new Date()).format("DD");
+    console.log(dayNumber);
+    console.log(todayDay);
+    return Number(dayNumber) - Number(todayDay);
+  };
 
   return (
     <div className={styles.home_second_container}>
@@ -38,7 +47,10 @@ const HomeSecond = () => {
               >
                 <div className={styles.left}>
                   <h6>{el.eventName}</h6>
-                  <p>10 Days to go</p>
+                  <p>
+                    {getDays(el.date)} {getDays(el.date) > 1 ? "Days" : "Day"}{" "}
+                    to go
+                  </p>
                 </div>
                 <div className={styles.right}>
                   <img src={calenderImg} alt="img" />

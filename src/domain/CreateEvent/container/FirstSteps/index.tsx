@@ -27,14 +27,23 @@ const FirstStep = (props: Props) => {
   const dispatch = useAppDispatch();
   const select_step = useAppSelector(selectStep_Event);
 
-  const changeColor = (id: number, title: string, sessionTitle: string) => {
+  const changeColor = (
+    id: number,
+    title: string,
+    sessionTitle: string,
+    borderColor: string
+  ) => {
     if (id === Brcolor) {
       setBrColor(-1);
       setOccasionType("");
     } else {
       setBrColor(id);
+
       setOccasionType(title);
       sessionStorage.setItem(sessionTitle, title);
+      if (sessionTitle === "occasion") {
+        sessionStorage.setItem("eventColor", borderColor);
+      }
     }
   };
 
@@ -56,7 +65,9 @@ const FirstStep = (props: Props) => {
               <li
                 className={styles.item_wrapper}
                 key={el.id}
-                onClick={() => changeColor(el.id, el.title, el.sessionTitle)}
+                onClick={() =>
+                  changeColor(el.id, el.title, el.sessionTitle, el.borderColor)
+                }
               >
                 <div
                   className={styles.item}

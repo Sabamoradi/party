@@ -13,4 +13,5 @@ export interface eventsItem {
   budget: string | null;
   date: string | null;
   time: string | null;
+  eventColor: string;
 }

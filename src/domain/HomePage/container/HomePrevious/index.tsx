@@ -1,12 +1,25 @@
 import styles from "./style.module.scss";
-import { Cake } from "../../../../assets/icons";
+import { Cake, Anniversary, Dinner, MeetUp } from "../../../../assets/icons";
 import { localTexts } from "../../../../locals/text";
 import { useAppSelector } from "../../../../hooks/useDispatch";
 import { selectPrevious_Events } from "../../../../store/Event/slice";
+import { occasionEnum } from "../../../../enums/globalEnums";
 
 const HomePrevious = () => {
   const previousEvents = useAppSelector(selectPrevious_Events);
 
+  const renderIcon = (occasionValue: string | null) => {
+    switch (occasionValue) {
+      case occasionEnum.birthday:
+        return <Cake />;
+      case occasionEnum.anniversary:
+        return <Anniversary />;
+      case occasionEnum.dinner:
+        return <Dinner />;
+      case occasionEnum.meetUp:
+        return <MeetUp />;
+    }
+  };
   return (
     <>
       {previousEvents.length > 0 ? (
@@ -17,8 +30,13 @@ const HomePrevious = () => {
               return (
                 <li className={styles.previous_item} key={el.dataId}>
                   <div className={styles.previous_item_wrap}>
-                    <i className={styles.img_wrapper}>
-                      <Cake />
+                    <i
+                      className={styles.img_wrapper}
+                      style={{
+                        borderColor: el.eventColor,
+                      }}
+                    >
+                      {renderIcon(el.occasion)}
                     </i>
                     <p className={styles.name}>{el.eventName}</p>
                     <div className={styles.time_wrapper}>

@@ -51,6 +51,7 @@ const ThirdSteps = (props: Props) => {
       eventName: sessionStorage.getItem("eventName"),
       date: sessionStorage.getItem("date"),
       time: sessionStorage.getItem("time"),
+      eventColor: sessionStorage.getItem("eventColor") || "",
       checkList: checkListData,
     };
     eventsItem.push(data);
