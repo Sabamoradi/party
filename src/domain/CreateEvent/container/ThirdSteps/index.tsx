@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
 import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
-import { eventsItem } from "../../../../configs/type";
+import { eventsItem, checkListData } from "../../../../configs/type";
 
 interface Item {
   id: number;
@@ -40,17 +40,16 @@ const ThirdSteps = (props: Props) => {
     let checkArrayLength: any = localStorage.getItem("eventsItem");
     let eventsItem: eventsItem[] = JSON.parse(checkArrayLength) || [];
 
+    let getSessionData: any = sessionStorage.getItem("checkListMock");
+    let checkListData: checkListData[] = JSON.parse(getSessionData);
+
     const data = {
       dataId: eventsItem ? eventsItem.length : 0,
       occasion: sessionStorage.getItem("occasion"),
       guestList: sessionStorage.getItem("guestList"),
-      eInvite: sessionStorage.getItem("eInvite"),
-      arrangements: sessionStorage.getItem("arrangements"),
-      alcohol: sessionStorage.getItem("alcohol"),
-      decorator: sessionStorage.getItem("decorator"),
-      games: sessionStorage.getItem("games"),
-      budget:sessionStorage.getItem('budget'),
-      eventName:sessionStorage.getItem('eventName')
+      budget: sessionStorage.getItem("budget"),
+      eventName: sessionStorage.getItem("eventName"),
+      checkList: checkListData,
     };
     eventsItem.push(data);
 
@@ -64,7 +63,15 @@ const ThirdSteps = (props: Props) => {
     } else {
       setchangeStyle(id);
       setSelectedItem(title);
-      sessionStorage.setItem(sessionTitle, title);
+      let sessionData: any = {};
+      sessionData["done"] = false;
+      sessionData["title"] = sessionTitle;
+      sessionData["value"] = title;
+      let getSessionData: any = sessionStorage.getItem("checkListMock");
+      let checkListData: checkListData[] = JSON.parse(getSessionData) || [];
+      checkListData.push(sessionData);
+      let checkListMock = JSON.stringify(checkListData);
+      sessionStorage.setItem("checkListMock", checkListMock);
     }
   };
 

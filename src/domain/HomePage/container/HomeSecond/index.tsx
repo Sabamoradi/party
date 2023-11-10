@@ -38,7 +38,10 @@ const HomeSecond = () => {
           </div>
           {eventsData.map((el) => {
             return (
-              <div className={`${styles.home_card_wrapper} mb-6`}>
+              <div
+                className={`${styles.home_card_wrapper} mb-6`}
+                onClick={() => navigate(`/checkList/${el.dataId}`)}
+              >
                 <div className={styles.left}>
                   <h6>{el.eventName}</h6>
                   <p>10 Days to go</p>

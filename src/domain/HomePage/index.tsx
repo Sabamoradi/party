@@ -9,7 +9,7 @@ const HomePage = () =>{
     <>
       <HomeHeader/>
       <HomeSecond/>
-      <HomePrevious/>
+      {/* <HomePrevious/> */}
     </>
   )
 }

@@ -1,10 +1,20 @@
 import styles from "./style.module.scss";
 import { checkList } from "../../configs/checkList";
+import { useEffect, useState } from "react";
+import { eventsItem } from "../../configs/type";
 
 const CheckList = () => {
   const checkItem = (id: number, selected: boolean | undefined) => {
-    const data = checkList.find(element => element.id === id);
+    const data = checkList.find((element) => element.id === id);
   };
+  const [eventsData, setEventsData] = useState<eventsItem[]>([]);
+
+  useEffect(() => {
+    let checkArrayLength: any = localStorage.getItem("eventsItem");
+    let eventsItem: eventsItem[] = JSON.parse(checkArrayLength) || [];
+
+    setEventsData(eventsItem);
+  }, []);
   return (
     <div className={styles.check_container}>
       <div className={styles.header_counter}>
@@ -26,28 +36,25 @@ const CheckList = () => {
 
       <div className={styles.check_items}>
         <ul>
-          {checkList.map(el => {
+          {checkList.map((el) => {
             return (
               <li className={styles.check_item} key={el.id}>
                 <div className={styles.wrapper}>
                   <div className={styles.check_box}>
                     <span
-                      className={`${styles.check_box_item} ${el.selected
-                        ? styles.selected_item
-                        : ""}`}
+                      className={`${styles.check_box_item} ${
+                        el.selected ? styles.selected_item : ""
+                      }`}
                       onClick={() => checkItem(el.id, el.selected)}
                     >
                       <i />
                     </span>
                   </div>
                   <div className={styles.text_wrapper}>
-                    <p className={styles.title}>
-                      {el.title}
-                    </p>
-                    {el.description &&
-                      <p className={styles.desc}>
-                        {el.description}
-                      </p>}
+                    <p className={styles.title}>{el.title}</p>
+                    {el.description && (
+                      <p className={styles.desc}>{el.description}</p>
+                    )}
                   </div>
                 </div>
               </li>

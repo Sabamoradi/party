@@ -17,7 +17,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/create" element={<CreateEvent />} />
-          <Route path="/checkList" element={<CheckList />} />
+          <Route path="/checkList/:dataId" element={<CheckList />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
