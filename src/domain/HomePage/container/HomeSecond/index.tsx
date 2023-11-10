@@ -13,23 +13,11 @@ const calenderImg = require("../../../../assets/images/svg/date.svg").default;
 
 const HomeSecond = () => {
   const navigate = useNavigate();
-  const [checkData, setCheckData] = useState(false);
-  const [eventsData, setEventsData] = useState<eventsItem[]>([]);
   const laterEvents = useAppSelector(selectLater_Events);
 
-  useEffect(() => {
-    const checkArrayLength = localStorage.getItem("eventsItem");
-    let eventsItem: eventsItem[] =
-      (checkArrayLength && JSON.parse(checkArrayLength)) || [];
-
-    if (eventsItem.length > 0) {
-      setCheckData(true);
-      setEventsData(eventsItem);
-    }
-  }, []);
   return (
     <div className={styles.home_second_container}>
-      {checkData ? (
+      {laterEvents.length > 0 ? (
         <>
           <div className={styles.home_card_top}>
             <p>{localTexts.upcoming}</p>
@@ -41,7 +29,7 @@ const HomeSecond = () => {
               />
             </div>
           </div>
-          {laterEvents.map((el) => {
+          {laterEvents?.map((el) => {
             return (
               <div
                 key={el.dataId}

@@ -1,16 +1,19 @@
 import HomeHeader from "./container/HomeHeader";
 import HomePrevious from "./container/HomePrevious";
 import HomeSecond from "./container/HomeSecond";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { eventsItem } from "../../configs/type";
 import { set_laterEvents, set_previousEvents } from "../../store/Event/slice";
 import { useAppDispatch } from "../../hooks/useDispatch";
 import moment from "moment";
-let checkArrayLength = localStorage.getItem("eventsItem");
-let eventsData: eventsItem[] =
-  (checkArrayLength && JSON.parse(checkArrayLength)) || [];
+
 const HomePage = () => {
   const dispatch = useAppDispatch();
+
+  let checkArrayLength = localStorage.getItem("eventsItem");
+  let eventsData: eventsItem[] =
+    (checkArrayLength && JSON.parse(checkArrayLength)) || [];
+
   useEffect(() => {
     const checkArrayLength: any = localStorage.getItem("eventsItem");
     let eventsItem: eventsItem[] = JSON.parse(checkArrayLength) || [];
@@ -33,6 +36,7 @@ const HomePage = () => {
         laterArray.push(el);
       }
     });
+
     dispatch(set_previousEvents(previousArray));
     dispatch(set_laterEvents(laterArray));
   };
@@ -40,7 +44,7 @@ const HomePage = () => {
     <>
       <HomeHeader />
       <HomeSecond />
-      <HomePrevious/>
+      <HomePrevious />
     </>
   );
 };
