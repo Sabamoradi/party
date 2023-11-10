@@ -48,13 +48,11 @@ const SecondSteps = () => {
   };
 
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
     sessionStorage.setItem("date", dateString);
     setDateData(dateString);
   };
 
   const onChangeTime: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
     sessionStorage.setItem("time", dateString);
     setTimeData(dateString);
   };

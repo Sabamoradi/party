@@ -3,6 +3,7 @@ import { checkList } from "../../configs/checkList";
 import { useEffect, useState } from "react";
 import { eventsItem, checkListData } from "../../configs/type";
 import { useParams } from "react-router-dom";
+import { checkLocalStorageData } from "../../utils/checkLocalStorageData";
 
 const CheckList = () => {
   const params = useParams();
@@ -14,11 +15,10 @@ const CheckList = () => {
   const [toDo, setToDo] = useState<number>(0);
 
   useEffect(() => {
-    const checkArrayLength = localStorage.getItem("eventsItem");
-    let eventsItem: eventsItem[] =
-      (checkArrayLength && JSON.parse(checkArrayLength)) || [];
+    const eventsItem: eventsItem[] = checkLocalStorageData();
     checkDataId(eventsItem);
   }, []);
+  
   const checkItem = (id: number) => {
     let checkData = checkListData;
     checkData?.forEach((el, index) => {

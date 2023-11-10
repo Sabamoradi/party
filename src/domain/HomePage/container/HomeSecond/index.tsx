@@ -1,10 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import styles from "./style.module.scss";
 import Button from "../../../../components/Button";
 import { localTexts } from "../../../../locals/text";
-import { useEffect } from "react";
-import { eventsItem } from "../../../../configs/type";
 import { useAppSelector } from "../../../../hooks/useDispatch";
 import { selectLater_Events } from "../../../../store/Event/slice";
 import moment from "moment";
@@ -19,8 +16,6 @@ const HomeSecond = () => {
   const getDays = (date: string | null) => {
     const dayNumber = moment(`${date}`, "YYYY-MM-DD").format("DD");
     const todayDay = moment(new Date()).format("DD");
-    console.log(dayNumber);
-    console.log(todayDay);
     return Number(dayNumber) - Number(todayDay);
   };
 
