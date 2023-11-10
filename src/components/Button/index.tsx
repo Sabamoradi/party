@@ -5,6 +5,7 @@ interface Props {
   onClick?: any;
   icon?: string;
   disabled?: boolean;
+  customClass?:string
 }
 
 function Button(props: Props) {
@@ -12,11 +13,12 @@ function Button(props: Props) {
     title,
     onClick,
     disabled,
+    customClass
   } = props;
 
   return (
     <button
-      className={styles.button}
+      className={`${styles.button} ${customClass}`}
       onClick={onClick}
       disabled={disabled}
     >

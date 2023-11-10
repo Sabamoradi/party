@@ -2,6 +2,10 @@
 
 .previous_container {
   margin-top: toRem(24);
+  .title{
+    font-size: toRem(16);
+    font-weight: 700;
+  }
   .previous_items {
     display: flex;
     width: 100%;
@@ -12,7 +16,7 @@
     .previous_item {
       width: 48%;
       min-height: toRem(128);
-      margin-bottom: toRem(16);
+      margin-top: toRem(16);
       .img_wrapper {
         border: 1px solid #d898ff;
         padding: 6px;

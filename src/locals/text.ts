@@ -10,5 +10,8 @@ export const localTexts = {
   Hour:'Hour',
   Minutes:'Minutes',
   Time:'Time',
-  hourAndMinutes:'HH:MM'
+  hourAndMinutes:'HH:MM',
+  upcoming:'Upcoming',
+  createNew:'Create New',
+  previousHouseParties:'Previous House Parties'
 };

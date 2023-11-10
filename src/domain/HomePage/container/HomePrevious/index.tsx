@@ -1,9 +1,13 @@
 import styles from "./style.module.scss";
 import { Cake } from "../../../../assets/icons";
+import { localTexts } from "../../../../locals/text";
 
 const HomePrevious = () => {
   return (
     <div className={styles.previous_container}>
+      <p className={styles.title}>
+        {localTexts.previousHouseParties}
+      </p>
       <ul className={styles.previous_items}>
         <li className={styles.previous_item}>
           <div className={styles.previous_item_wrap}>

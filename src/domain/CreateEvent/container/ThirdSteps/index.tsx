@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
 import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
+import { eventsItem } from "../../../../configs/type";
 
 interface Item {
   id: number;
@@ -16,16 +17,6 @@ interface Props {
   img: string;
   title: string;
   items: Item[];
-}
-interface eventsItem {
-  dataId: number | null;
-  occasion: string | null;
-  guestList: string | null;
-  eInvite: string | null;
-  arrangements: string | null;
-  alcohol: string | null;
-  decorator: string | null;
-  games: string | null;
 }
 const ThirdSteps = (props: Props) => {
   const { img, title, items } = props;
