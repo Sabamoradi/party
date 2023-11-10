@@ -1,34 +1,65 @@
 import styles from "./style.module.scss";
 import { checkList } from "../../configs/checkList";
 import { useEffect, useState } from "react";
-import { eventsItem } from "../../configs/type";
+import { eventsItem, checkListData } from "../../configs/type";
+import { useParams } from "react-router-dom";
 
 const CheckList = () => {
-  const checkItem = (id: number, selected: boolean | undefined) => {
-    const data = checkList.find((element) => element.id === id);
+  const checkItem = (id: number, selected: boolean | null) => {
+    let checkData = checkListData;
+    checkData?.forEach((el, index) => {
+      if (index === id) {
+        el.done = !el.done;
+        if (el.done) {
+          setDoneThings(doneThings + 1);
+          setToDo(toDo - 1);
+        } else {
+          setDoneThings(doneThings - 1);
+          setToDo(toDo + 1);
+        }
+      }
+    });
+    setCheckListData(checkData);
   };
-  const [eventsData, setEventsData] = useState<eventsItem[]>([]);
+  const params = useParams();
+  const [eventsName, setEventsName] = useState<string | null | undefined>("");
+  const [checkListData, setCheckListData] = useState<
+    checkListData[] | undefined
+  >([]);
+  const [doneThings, setDoneThings] = useState(0);
+  const [toDo, setToDo] = useState<number>(0);
 
   useEffect(() => {
     let checkArrayLength: any = localStorage.getItem("eventsItem");
     let eventsItem: eventsItem[] = JSON.parse(checkArrayLength) || [];
 
-    setEventsData(eventsItem);
+    checkDataId(eventsItem);
   }, []);
+
+  const checkDataId = (eventsItem: eventsItem[]) => {
+    let checkData = eventsItem.find(
+      (el) => el.dataId === Number(params.dataId)
+    );
+
+    setEventsName(checkData?.eventName);
+    setCheckListData(checkData?.checkList);
+    
+    setToDo(checkData?.checkList.length || 0);
+  };
   return (
     <div className={styles.check_container}>
       <div className={styles.header_counter}>
         <div className={styles.left}>
-          <p className={styles.name}>Sara’s Birthday Bash</p>
+          <p className={styles.name}>{eventsName}</p>
           <p className={styles.date}>10 Days to go</p>
         </div>
         <div className={styles.right}>
           <div className={styles.right_item}>
-            <p className={styles.days}>0</p>
+            <p className={styles.days}>{doneThings}</p>
             <p className={styles.title}>Done</p>
           </div>
           <div className={styles.right_item}>
-            <p className={styles.days}>5</p>
+            <p className={styles.days}>{toDo}</p>
             <p className={styles.title}>To DO</p>
           </div>
         </div>
@@ -36,25 +67,26 @@ const CheckList = () => {
 
       <div className={styles.check_items}>
         <ul>
-          {checkList.map((el) => {
+          {checkListData?.map((el, index) => {
             return (
-              <li className={styles.check_item} key={el.id}>
+              <li className={styles.check_item} key={`${index}-check`}>
                 <div className={styles.wrapper}>
                   <div className={styles.check_box}>
                     <span
                       className={`${styles.check_box_item} ${
-                        el.selected ? styles.selected_item : ""
+                        el.done ? styles.selected_item : ""
                       }`}
-                      onClick={() => checkItem(el.id, el.selected)}
+                      onClick={() => checkItem(index, el.done)}
                     >
-                      <i />
+                      <i></i>
                     </span>
                   </div>
                   <div className={styles.text_wrapper}>
                     <p className={styles.title}>{el.title}</p>
-                    {el.description && (
+                    <p className={styles.desc}>Tap to view vendors</p>
+                    {/* {el. && (
                       <p className={styles.desc}>{el.description}</p>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </li>
