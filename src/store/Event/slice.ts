@@ -1,18 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { eventsItem } from "../../configs/type";
 
 export interface State {
   BS_TimePicker: boolean;
   Step_Event: string | null;
-  eventHour:string;
-  eventMinutes:string;
+  eventHour: string;
+  eventMinutes: string;
+  previousEvents: eventsItem[];
+  laterEvents: eventsItem[];
 }
 
 const initialState: State = {
   BS_TimePicker: false,
   Step_Event: sessionStorage.getItem("step") || "0",
-  eventHour:"",
-  eventMinutes:""
+  eventHour: "",
+  eventMinutes: "",
+  previousEvents: [],
+  laterEvents:[]
 };
 
 export const eventSlice = createSlice({
@@ -32,10 +37,23 @@ export const eventSlice = createSlice({
     set_EventsMinutes: (state, action) => {
       state.eventMinutes = action.payload;
     },
+    set_previousEvents: (state, action) => {
+      state.previousEvents = action.payload;
+    },
+    set_laterEvents: (state, action) => {
+      state.laterEvents = action.payload;
+    },
   },
 });
 
-export const { setBS_TimePicker, set_StepEvent,set_EventsHour,set_EventsMinutes } = eventSlice.actions;
+export const {
+  setBS_TimePicker,
+  set_StepEvent,
+  set_EventsHour,
+  set_EventsMinutes,
+  set_previousEvents,
+  set_laterEvents
+} = eventSlice.actions;
 
 export const selectFetchingStatus = (state: RootState) => state.general.status;
 export const selectBS_TimePicker = (state: RootState) =>
@@ -46,4 +64,8 @@ export const selectEvents_Hour = (state: RootState) =>
   state.eventCreate.eventHour;
 export const selectEvents_Minutes = (state: RootState) =>
   state.eventCreate.eventMinutes;
+export const selectPrevious_Events = (state: RootState) =>
+  state.eventCreate.previousEvents;
+export const selectLater_Events = (state: RootState) =>
+  state.eventCreate.laterEvents;
 export default eventSlice.reducer;

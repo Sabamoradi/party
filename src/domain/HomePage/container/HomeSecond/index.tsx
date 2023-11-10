@@ -5,6 +5,9 @@ import Button from "../../../../components/Button";
 import { localTexts } from "../../../../locals/text";
 import { useEffect } from "react";
 import { eventsItem } from "../../../../configs/type";
+import { useAppSelector } from "../../../../hooks/useDispatch";
+import { selectLater_Events } from "../../../../store/Event/slice";
+
 const img = require("../../../../assets/images/svg/checklist.svg").default;
 const calenderImg = require("../../../../assets/images/svg/date.svg").default;
 
@@ -12,10 +15,12 @@ const HomeSecond = () => {
   const navigate = useNavigate();
   const [checkData, setCheckData] = useState(false);
   const [eventsData, setEventsData] = useState<eventsItem[]>([]);
+  const laterEvents = useAppSelector(selectLater_Events);
 
   useEffect(() => {
-    let checkArrayLength: any = localStorage.getItem("eventsItem");
-    let eventsItem: eventsItem[] = JSON.parse(checkArrayLength) || [];
+    const checkArrayLength = localStorage.getItem("eventsItem");
+    let eventsItem: eventsItem[] =
+      (checkArrayLength && JSON.parse(checkArrayLength)) || [];
 
     if (eventsItem.length > 0) {
       setCheckData(true);
@@ -36,7 +41,7 @@ const HomeSecond = () => {
               />
             </div>
           </div>
-          {eventsData.map((el) => {
+          {laterEvents.map((el) => {
             return (
               <div
                 key={el.dataId}

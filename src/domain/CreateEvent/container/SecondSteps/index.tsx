@@ -38,11 +38,11 @@ const SecondSteps = () => {
     dispatch(set_StepEvent((Number(select_step) + 1).toString()));
   };
 
-  const getName = (event: any) => {
+  const getName = (event: string) => {
     sessionStorage.setItem("eventName", event);
     setEventName(event);
   };
-  const getBudget = (event: any) => {
+  const getBudget = (event: string) => {
     sessionStorage.setItem("budget", event);
     setBudget(event);
   };

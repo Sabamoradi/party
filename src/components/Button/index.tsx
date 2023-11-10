@@ -4,7 +4,7 @@ interface Props {
   title: string;
   onClick?: any;
   icon?: string;
-  disabled?: boolean | undefined;
+  disabled?: boolean;
   customClass?:string
 }
 

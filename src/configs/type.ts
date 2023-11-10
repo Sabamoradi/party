@@ -11,4 +11,6 @@ export interface eventsItem {
   checkList: checkListData[];
   eventName: string | null;
   budget: string | null;
+  date: string | null;
+  time: string | null;
 }

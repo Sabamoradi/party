@@ -5,7 +5,21 @@ import { eventsItem, checkListData } from "../../configs/type";
 import { useParams } from "react-router-dom";
 
 const CheckList = () => {
-  const checkItem = (id: number, selected: boolean | null) => {
+  const params = useParams();
+  const [eventsName, setEventsName] = useState("");
+  const [checkListData, setCheckListData] = useState<
+    checkListData[] | undefined
+  >([]);
+  const [doneThings, setDoneThings] = useState(0);
+  const [toDo, setToDo] = useState<number>(0);
+
+  useEffect(() => {
+    const checkArrayLength = localStorage.getItem("eventsItem");
+    let eventsItem: eventsItem[] =
+      (checkArrayLength && JSON.parse(checkArrayLength)) || [];
+    checkDataId(eventsItem);
+  }, []);
+  const checkItem = (id: number) => {
     let checkData = checkListData;
     checkData?.forEach((el, index) => {
       if (index === id) {
@@ -21,29 +35,14 @@ const CheckList = () => {
     });
     setCheckListData(checkData);
   };
-  const params = useParams();
-  const [eventsName, setEventsName] = useState<string | null | undefined>("");
-  const [checkListData, setCheckListData] = useState<
-    checkListData[] | undefined
-  >([]);
-  const [doneThings, setDoneThings] = useState(0);
-  const [toDo, setToDo] = useState<number>(0);
-
-  useEffect(() => {
-    let checkArrayLength: any = localStorage.getItem("eventsItem");
-    let eventsItem: eventsItem[] = JSON.parse(checkArrayLength) || [];
-
-    checkDataId(eventsItem);
-  }, []);
-
   const checkDataId = (eventsItem: eventsItem[]) => {
     let checkData = eventsItem.find(
       (el) => el.dataId === Number(params.dataId)
     );
 
-    setEventsName(checkData?.eventName);
+    setEventsName(checkData?.eventName || "");
     setCheckListData(checkData?.checkList);
-    
+
     setToDo(checkData?.checkList.length || 0);
   };
   return (
@@ -76,7 +75,7 @@ const CheckList = () => {
                       className={`${styles.check_box_item} ${
                         el.done ? styles.selected_item : ""
                       }`}
-                      onClick={() => checkItem(index, el.done)}
+                      onClick={() => checkItem(index)}
                     >
                       <i></i>
                     </span>
