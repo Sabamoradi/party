@@ -2,9 +2,6 @@ import styles from "./style.module.scss";
 import Input from "../../../../components/Input";
 import { localTexts } from "../../../../locals/text";
 import { useState } from "react";
-import CustomDatePicker from "../../../../components/DatePicker";
-// import { DayValue, DayRange, Day } from "react-modern-calendar-datepicker";
-// import CustomTimePicker from "../../../../components/CustomTimePicker";
 import type { DatePickerProps, TimePickerProps } from "antd";
 import { DatePicker, Space, TimePicker } from "antd";
 import Button from "../../../../components/Button";
@@ -26,9 +23,7 @@ const PickerWithType = ({
 
 const SecondSteps = () => {
   const dispatch = useAppDispatch();
-  // const [selectedDay, setSelectedDay] = useState<DayValue | null>(null);
   const [timeType, setType] = useState<PickerType>("time");
-  const [disableBtn, setDisableBtn] = useState(0);
   const [eventName, setEventName] = useState("");
   const [timeData, setTimeData] = useState("");
   const [dateData, setDateData] = useState("");
@@ -60,18 +55,10 @@ const SecondSteps = () => {
   return (
     <div className={styles.second_container}>
       <Input type="text" labelTitle={localTexts.eventName} onChange={getName} />
-
-      {/* <CustomDatePicker
-        labelTitle={localTexts.Date}
-        selectedDate={selectedDay}
-        setSelectedDate={setSelectedDay}
-      /> */}
       <Space direction="vertical">
         <p className={styles.date_label}>{localTexts.Date}</p>
         <DatePicker onChange={onChangeDate} />
       </Space>
-
-      {/* <CustomTimePicker /> */}
       <p className={styles.date_label}>{localTexts.Time}</p>
       <Space direction="vertical">
         <PickerWithType type={timeType} onChange={onChangeTime} />
