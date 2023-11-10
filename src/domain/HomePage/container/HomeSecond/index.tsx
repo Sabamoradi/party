@@ -11,6 +11,7 @@ const calenderImg = require("../../../../assets/images/svg/date.svg").default;
 const HomeSecond = () => {
   const navigate = useNavigate();
   const [checkData, setCheckData] = useState(false);
+  const [eventsData, setEventsData] = useState<eventsItem[]>([]);
 
   useEffect(() => {
     let checkArrayLength: any = localStorage.getItem("eventsItem");
@@ -18,6 +19,7 @@ const HomeSecond = () => {
 
     if (eventsItem.length > 0) {
       setCheckData(true);
+      setEventsData(eventsItem);
     }
   }, []);
   return (
@@ -27,22 +29,26 @@ const HomeSecond = () => {
           <div className={styles.home_card_top}>
             <p>{localTexts.upcoming}</p>
             <div className={styles.btn_wrapper}>
-            <Button
-              title={localTexts.createNew}
-              onClick={() => navigate("/create")}
-              customClass={styles.btn_custom}
-            />
+              <Button
+                title={localTexts.createNew}
+                onClick={() => navigate("/create")}
+                customClass={styles.btn_custom}
+              />
             </div>
           </div>
-          <div className={styles.home_card_wrapper}>
-            <div className={styles.left}>
-              <h6>Sara’s Birthday Bash</h6>
-              <p>10 Days to go</p>
-            </div>
-            <div className={styles.right}>
-              <img src={calenderImg} alt="img" />
-            </div>
-          </div>
+          {eventsData.map((el) => {
+            return (
+              <div className={`${styles.home_card_wrapper} mb-6`}>
+                <div className={styles.left}>
+                  <h6>Sara’s Birthday Bash</h6>
+                  <p>10 Days to go</p>
+                </div>
+                <div className={styles.right}>
+                  <img src={calenderImg} alt="img" />
+                </div>
+              </div>
+            );
+          })}
         </>
       ) : (
         <div className={styles.home_card_wrapper}>
