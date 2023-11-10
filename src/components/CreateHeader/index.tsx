@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
   title: string;
+  hasProgressBar: boolean;
+  progressBarNumber:number
 }
 
 const CreateHeader = (props: Props) => {
-  const { title } = props;
+  const { title,hasProgressBar,progressBarNumber } = props;
   const dispatch = useAppDispatch();
   const selectStep = useAppSelector(selectStep_Event);
   const navigate = useNavigate();
@@ -29,16 +31,18 @@ const CreateHeader = (props: Props) => {
         </i>
         <p>{title}</p>
       </div>
-      <div className={styles.bottom}>
-        <div className={styles.bottom_wrapper}>
-          <div
-            className={styles.progress_bar}
-            style={{
-              width: `${(Number(selectStep) * 12.5)}%`,
-            }}
-          ></div>
+      {hasProgressBar && (
+        <div className={styles.bottom}>
+          <div className={styles.bottom_wrapper}>
+            <div
+              className={styles.progress_bar}
+              style={{
+                width: `${Number(selectStep) * progressBarNumber}%`,
+              }}
+            ></div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

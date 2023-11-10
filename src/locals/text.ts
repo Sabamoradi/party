@@ -14,5 +14,6 @@ export const localTexts = {
   upcoming:'Upcoming',
   createNew:'Create New',
   previousHouseParties:'Previous House Parties',
-  budget:'Budget'
+  budget:'Budget',
+  checklist:"Checklist"
 };

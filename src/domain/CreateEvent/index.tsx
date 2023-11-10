@@ -71,7 +71,11 @@ const CreateEvent = () => {
   };
   return (
     <div className={styles.create_container}>
-      <CreateHeader title={localTexts.createNewEvent} />
+      <CreateHeader
+        title={localTexts.createNewEvent}
+        hasProgressBar={true}
+        progressBarNumber={12.5}
+      />
       {renderContainer()}
     </div>
   );

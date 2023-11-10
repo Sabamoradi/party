@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { eventsItem, checkListData } from "../../configs/type";
 import { useParams } from "react-router-dom";
 import { checkLocalStorageData } from "../../utils/checkLocalStorageData";
+import CreateHeader from "../../components/CreateHeader";
+import { localTexts } from "../../locals/text";
 
 const CheckList = () => {
   const params = useParams();
@@ -18,7 +20,7 @@ const CheckList = () => {
     const eventsItem: eventsItem[] = checkLocalStorageData();
     checkDataId(eventsItem);
   }, []);
-  
+
   const checkItem = (id: number) => {
     let checkData = checkListData;
     checkData?.forEach((el, index) => {
@@ -47,6 +49,7 @@ const CheckList = () => {
   };
   return (
     <div className={styles.check_container}>
+      <CreateHeader title={localTexts.checklist} hasProgressBar={false} progressBarNumber={0} />
       <div className={styles.header_counter}>
         <div className={styles.left}>
           <p className={styles.name}>{eventsName}</p>
