@@ -17,9 +17,17 @@ const SecondSteps = () => {
     dispatch(set_StepEvent((Number(select_step) + 1).toString()));
   };
 
+  const getName = (event: any) => {
+    console.log(event);
+    sessionStorage.setItem("eventName", event);
+  };
+  const getBudget = (event: any) => {
+    sessionStorage.setItem("budget", event);
+  };
+
   return (
     <div className={styles.second_container}>
-      <Input type="text" labelTitle={localTexts.eventName} />
+      <Input type="text" labelTitle={localTexts.eventName} onChange={getName} />
 
       {/* <CustomDatePicker
         labelTitle={localTexts.Date}
@@ -31,7 +39,8 @@ const SecondSteps = () => {
       <Input
         inputWrapperClass={"mt-6"}
         type="text"
-        labelTitle={localTexts.eventName}
+        labelTitle={localTexts.budget}
+        onChange={getBudget}
       />
       <div className={styles.btn_wrapper}>
         <Button title={localTexts.next} onClick={() => setData()} />

@@ -7,4 +7,6 @@ export interface eventsItem {
   alcohol: string | null;
   decorator: string | null;
   games: string | null;
+  eventName:string | null;
+  budget:string | null
 }

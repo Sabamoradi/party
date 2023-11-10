@@ -49,6 +49,8 @@ const ThirdSteps = (props: Props) => {
       alcohol: sessionStorage.getItem("alcohol"),
       decorator: sessionStorage.getItem("decorator"),
       games: sessionStorage.getItem("games"),
+      budget:sessionStorage.getItem('budget'),
+      eventName:sessionStorage.getItem('eventName')
     };
     eventsItem.push(data);
 

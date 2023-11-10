@@ -1,13 +1,32 @@
 import styles from "./style.module.scss";
 import CustomModal from "../Modal";
-import { useAppDispatch } from "../../hooks/useDispatch";
+import { useAppDispatch, useAppSelector } from "../../hooks/useDispatch";
 import { setBS_TimePicker } from "../../store/Event/slice";
 import Input from "../Input";
 import { localTexts } from "../../locals/text";
 import Button from "../Button";
+import {
+  set_EventsHour,
+  selectEvents_Hour,
+  set_EventsMinutes,
+  selectEvents_Minutes,
+} from "../../store/Event/slice";
 
 const CustomTimePicker = () => {
   const dispatch = useAppDispatch();
+  const selectHour = useAppSelector(selectEvents_Hour);
+  const selectMinutes = useAppSelector(selectEvents_Minutes);
+
+  const getHour = (event: any) => {
+    dispatch(set_EventsHour(event));
+  };
+  const getMinutes = (event: any) => {
+    dispatch(set_EventsMinutes(event));
+  };
+
+  const showValue = () => {
+    return `${selectHour}${selectMinutes}`;
+  };
 
   return (
     <div className="">
@@ -17,6 +36,7 @@ const CustomTimePicker = () => {
           type="number"
           labelTitle={localTexts.Time}
           placeholder={localTexts.hourAndMinutes}
+          value={showValue()}
         />
       </div>
       <CustomModal>
@@ -26,6 +46,7 @@ const CustomTimePicker = () => {
               inputWrapperClass={"mt-6"}
               type="number"
               labelTitle={localTexts.Hour}
+              onChange={getHour}
             />
           </div>
           <div className={styles.custom_wrapper}>
@@ -33,11 +54,12 @@ const CustomTimePicker = () => {
               inputWrapperClass={"mt-6"}
               type="number"
               labelTitle={localTexts.Minutes}
+              onChange={getMinutes}
             />
           </div>
         </div>
         <div className={styles.custom_btn}>
-        <Button title={localTexts.next} />
+          <Button title={localTexts.next} />
         </div>
       </CustomModal>
     </div>

@@ -40,7 +40,7 @@ const HomeSecond = () => {
             return (
               <div className={`${styles.home_card_wrapper} mb-6`}>
                 <div className={styles.left}>
-                  <h6>Sara’s Birthday Bash</h6>
+                  <h6>{el.eventName}</h6>
                   <p>10 Days to go</p>
                 </div>
                 <div className={styles.right}>
