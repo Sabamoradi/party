@@ -28,10 +28,10 @@ const ThirdSteps = (props: Props) => {
   const navigate = useNavigate();
 
   const setData = () => {
-    if (select_step === "7") {
+    if (select_step === "8") {
       arrangeData();
       navigate("/");
-      dispatch(set_StepEvent("0"));
+      dispatch(set_StepEvent("1"));
     } else {
       dispatch(set_StepEvent((Number(select_step) + 1).toString()));
       setchangeStyle(-1);

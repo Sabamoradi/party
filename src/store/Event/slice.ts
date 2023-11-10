@@ -13,7 +13,7 @@ export interface State {
 
 const initialState: State = {
   BS_TimePicker: false,
-  Step_Event: sessionStorage.getItem("step") || "0",
+  Step_Event: sessionStorage.getItem("step") || "1",
   eventHour: "",
   eventMinutes: "",
   previousEvents: [],

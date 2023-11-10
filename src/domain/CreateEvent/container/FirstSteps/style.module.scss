@@ -14,14 +14,14 @@
       list-style: none;
       display: flex;
       align-items: center;
-      justify-content: space-between;
       flex-wrap: wrap;
       width: 100%;
       .item_wrapper {
-        width: 31%;
+        width: 33%;
         height: toRem(100);
         margin-bottom: toRem(16);
         cursor: pointer;
+        padding: 0 toRem(5);
         .item {
           @include greyBox;
           display: flex;

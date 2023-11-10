@@ -1,4 +1,4 @@
-import CreateHeader from "./container/CreateHeader";
+import CreateHeader from "../../components/CreateHeader";
 import FirstSteps from "./container/FirstSteps";
 import styles from "./style.module.scss";
 import { occasion } from "../../configs/occasion";
@@ -19,20 +19,19 @@ import { useAppSelector } from "../../hooks/useDispatch";
 const CreateEvent = () => {
   const select_step = useAppSelector(selectStep_Event);
 
-  
   const renderContainer = () => {
     switch (select_step) {
-      case "0":
+      case "1":
         return (
           <FirstSteps listData={occasion} pageTitle={localTexts.occasion} />
         );
-      case "1": 
+      case "2":
         return (
           <FirstSteps listData={guestList} pageTitle={localTexts.guestList} />
         );
-      case "2":
-        return <SecondSteps />;
       case "3":
+        return <SecondSteps />;
+      case "4":
         return (
           <ThirdSteps
             title={eInvite.title}
@@ -40,7 +39,7 @@ const CreateEvent = () => {
             items={eInvite.items}
           />
         );
-      case "4":
+      case "5":
         return (
           <ThirdSteps
             title={arrangment.title}
@@ -48,7 +47,7 @@ const CreateEvent = () => {
             items={arrangment.items}
           />
         );
-      case "5":
+      case "6":
         return (
           <ThirdSteps
             title={drinks.title}
@@ -56,7 +55,7 @@ const CreateEvent = () => {
             items={drinks.items}
           />
         );
-      case "6":
+      case "7":
         return (
           <ThirdSteps
             title={decorator.title}
@@ -64,7 +63,7 @@ const CreateEvent = () => {
             items={decorator.items}
           />
         );
-      case "7":
+      case "8":
         return (
           <ThirdSteps title={games.title} img={games.img} items={games.items} />
         );
@@ -72,7 +71,7 @@ const CreateEvent = () => {
   };
   return (
     <div className={styles.create_container}>
-      <CreateHeader />
+      <CreateHeader title={localTexts.createNewEvent} />
       {renderContainer()}
     </div>
   );

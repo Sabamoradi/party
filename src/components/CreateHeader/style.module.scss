@@ -1,0 +1,32 @@
+@use "src/styles/main.scss" as *;
+
+.header_container {
+    margin-top: toRem(18);
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    i{
+        display: flex;
+        align-items: center;
+        padding-right: toRem(8);
+    }
+    p{
+      font-weight: 700;
+      font-size: toRem(16);
+    }
+  }
+  .bottom{
+    margin-top: toRem(18);
+    .bottom_wrapper{
+      width: 100%;
+      height: toRem(3);
+      background-color: $gray-47;
+      .progress_bar{
+        width: 0;
+        height: 100%;
+        background-color: $blue-7;
+      }
+    }
+  }
+}
