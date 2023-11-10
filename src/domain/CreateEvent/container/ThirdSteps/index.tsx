@@ -49,6 +49,8 @@ const ThirdSteps = (props: Props) => {
       guestList: sessionStorage.getItem("guestList"),
       budget: sessionStorage.getItem("budget"),
       eventName: sessionStorage.getItem("eventName"),
+      date: sessionStorage.getItem("date"),
+      time: sessionStorage.getItem("time"),
       checkList: checkListData,
     };
     eventsItem.push(data);

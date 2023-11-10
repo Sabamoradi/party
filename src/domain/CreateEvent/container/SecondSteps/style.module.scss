@@ -11,4 +11,9 @@
     right: 0;
     padding: 0 toRem(16);
   }
+  .date_label {
+    font-size: toRem(14);
+    font-weight: 700;
+    margin: toRem(16) 0 toRem(8) 0;
+  }
 }
