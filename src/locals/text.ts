@@ -6,13 +6,14 @@ export const localTexts = {
   next: "NEXT",
   guestList: "What is the size of the guest list?",
   eventName: "Event Name",
-  Date:"Date",
-  Hour:'Hour',
-  Minutes:'Minutes',
-  Time:'Time',
-  hourAndMinutes:'HH:MM',
-  upcoming:'Upcoming',
-  createNew:'Create New',
-  previousHouseParties:'Previous House Parties',
-  budget:'Budget'
+  Date: "Date",
+  Hour: "Hour",
+  Minutes: "Minutes",
+  Time: "Time",
+  hourAndMinutes: "HH:MM",
+  upcoming: "Upcoming",
+  createNew: "Create New",
+  previousHouseParties: "Previous House Parties",
+  budget: "Budget",
+  checkList: "CheckList"
 };

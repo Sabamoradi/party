@@ -32,6 +32,7 @@ const ThirdSteps = (props: Props) => {
       arrangeData();
       navigate("/");
       dispatch(set_StepEvent("1"));
+      sessionStorage.clear();
     } else {
       dispatch(set_StepEvent((Number(select_step) + 1).toString()));
       setchangeStyle(-1);
@@ -53,7 +54,7 @@ const ThirdSteps = (props: Props) => {
       date: sessionStorage.getItem("date"),
       time: sessionStorage.getItem("time"),
       eventColor: sessionStorage.getItem("eventColor") || "",
-      checkList: checkListData,
+      checkList: checkListData
     };
     eventsItem.push(data);
 
@@ -70,7 +71,7 @@ const ThirdSteps = (props: Props) => {
       let sessionData: any = {
         done: false,
         title: sessionTitle,
-        value: title,
+        value: title
       };
 
       const getSessionData: any = sessionStorage.getItem("checkListMock");
@@ -87,9 +88,11 @@ const ThirdSteps = (props: Props) => {
         <img src={img} alt={title} />
       </i>
       <div className={styles.text}>
-        <p>{title}</p>
+        <p>
+          {title}
+        </p>
         <ul className={styles.item_list}>
-          {items.map((el) => {
+          {items.map(el => {
             return (
               <li
                 key={el.id}
@@ -98,9 +101,9 @@ const ThirdSteps = (props: Props) => {
                 }}
               >
                 <div
-                  className={`${styles.text_item_wrap} ${
-                    el.id === changeStyle ? styles.selected_data : ""
-                  }`}
+                  className={`${styles.text_item_wrap} ${el.id === changeStyle
+                    ? styles.selected_data
+                    : ""}`}
                 >
                   {el.title}
                 </div>
