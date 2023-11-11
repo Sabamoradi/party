@@ -2,7 +2,10 @@ import styles from "./style.module.scss";
 import { useEffect, useState } from "react";
 import { eventsItem, checkListData } from "../../configs/type";
 import { useParams } from "react-router-dom";
-import { checkLocalStorageData } from "../../utils/checkLocalStorageData";
+import {
+  checkLocalStorageData,
+  setLocalStorageData,
+} from "../../utils/checkLocalStorageData";
 import CreateHeader from "../../components/CreateHeader";
 import { localTexts } from "../../locals/text";
 import { Vector } from "../../assets/icons";
@@ -11,10 +14,9 @@ import moment from "moment";
 const CheckList = () => {
   const params = useParams();
   const [eventsName, setEventsName] = useState("");
-  const [eventsDate,setEventsDate] = useState("")
-  const [checkListData, setCheckListData] = useState<
-    checkListData[] | undefined
-  >([]);
+  const [eventsDate, setEventsDate] = useState("");
+  const [eventsList, setEventsList] = useState<eventsItem[]>([]);
+  const [checkListData, setCheckListData] = useState<checkListData[]>([]);
   const [doneThings, setDoneThings] = useState(0);
   const [toDo, setToDo] = useState<number>(0);
 
@@ -35,21 +37,45 @@ const CheckList = () => {
           setDoneThings(doneThings - 1);
           setToDo(toDo + 1);
         }
+        updateEventsList();
       }
     });
     setCheckListData(checkData);
   };
+  const updateEventsList = () => {
+    eventsList.forEach((el) => {
+      if (el.dataId === Number(params.dataId)) {
+        el.checkList = checkListData;
+      }
+    });
+    setLocalStorageData(eventsList);
+  };
   const checkDataId = (eventsItem: eventsItem[]) => {
+    setEventsList(eventsItem);
     let checkData = eventsItem.find(
       (el) => el.dataId === Number(params.dataId)
     );
-    setEventsDate(checkData?.date || "")
-    setEventsName(checkData?.eventName || "");
-    setCheckListData(checkData?.checkList);
 
-    setToDo(checkData?.checkList.length || 0);
+    setEventsDate(checkData?.date || "");
+    setEventsName(checkData?.eventName || "");
+    setCheckListData(checkData?.checkList || []);
+    updateCheckList(checkData?.checkList || []);
   };
-  const getDays = (date:string) => {
+
+  const updateCheckList = (checkList: checkListData[]) => {
+    let counter = 0;
+    checkList.forEach((el) => {
+      if (el.done) {
+        counter = ++counter;
+        setDoneThings(counter);
+        setToDo(checkList.length - counter);
+      }
+    });
+    if (counter === 0) {
+      setToDo(checkList.length || 0);
+    }
+  };
+  const getDays = (date: string) => {
     const dayNumber = moment(`${date}`, "YYYY-MM-DD").format("DD");
     const todayDay = moment(new Date()).format("DD");
     return Number(dayNumber) - Number(todayDay);
@@ -57,12 +83,18 @@ const CheckList = () => {
 
   return (
     <div className={styles.check_container}>
-      <CreateHeader title={localTexts.checkList} hasProgressBar={false} progressBarNumber={0} />
+      <CreateHeader
+        title={localTexts.checkList}
+        hasProgressBar={false}
+        progressBarNumber={0}
+      />
       <div className={styles.header_counter}>
         <div className={styles.left}>
           <p className={styles.name}>{eventsName}</p>
-          <p className={styles.date}>{getDays(eventsDate)} {getDays(eventsDate) > 1 ? "Days" : "Day"}{" "}
-                    to go</p>
+          <p className={styles.date}>
+            {getDays(eventsDate)} {getDays(eventsDate) > 1 ? "Days" : "Day"} to
+            go
+          </p>
         </div>
         <div className={styles.right}>
           <div className={styles.right_item}>
@@ -90,7 +122,7 @@ const CheckList = () => {
                       onClick={() => checkItem(index)}
                     >
                       <i>
-                        <Vector/>
+                        <Vector />
                       </i>
                     </span>
                   </div>
