@@ -6,7 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
 import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
 import { eventsItem, checkListData } from "../../../../configs/type";
-import { checkLocalStorageData } from "../../../../utils/checkLocalStorageData";
+import {
+  checkLocalStorageData,
+  setLocalStorageData
+} from "../../../../utils/checkLocalStorageData";
+import {
+  checkSessionStorageData,
+  setDataInSessionStorage
+} from "../../../../utils/checkSessionStorageData";
 
 interface Item {
   id: number;
@@ -32,6 +39,7 @@ const ThirdSteps = (props: Props) => {
       arrangeData();
       navigate("/");
       dispatch(set_StepEvent("1"));
+      sessionStorage.clear();
     } else {
       dispatch(set_StepEvent((Number(select_step) + 1).toString()));
       setchangeStyle(-1);
@@ -40,9 +48,7 @@ const ThirdSteps = (props: Props) => {
   };
   const arrangeData = () => {
     let eventsItem: eventsItem[] = checkLocalStorageData();
-
-    let getSessionData: any = sessionStorage.getItem("checkListMock");
-    let checkListData: checkListData[] = JSON.parse(getSessionData);
+    let checkListData: checkListData[] = checkSessionStorageData();
 
     const data = {
       dataId: eventsItem ? eventsItem.length : 0,
@@ -53,12 +59,10 @@ const ThirdSteps = (props: Props) => {
       date: sessionStorage.getItem("date"),
       time: sessionStorage.getItem("time"),
       eventColor: sessionStorage.getItem("eventColor") || "",
-      checkList: checkListData,
+      checkList: checkListData
     };
     eventsItem.push(data);
-
-    let eventsItemMock = JSON.stringify(eventsItem);
-    localStorage.setItem("eventsItem", eventsItemMock);
+    setLocalStorageData(eventsItem);
   };
   const checkItem = (id: number, title: string, sessionTitle: string) => {
     if (id === changeStyle) {
@@ -70,14 +74,12 @@ const ThirdSteps = (props: Props) => {
       let sessionData: any = {
         done: false,
         title: sessionTitle,
-        value: title,
+        value: title
       };
 
-      const getSessionData: any = sessionStorage.getItem("checkListMock");
-      const checkListData: checkListData[] = JSON.parse(getSessionData) || [];
+      const checkListData: checkListData[] = checkSessionStorageData();
       checkListData.push(sessionData);
-      let checkListMock = JSON.stringify(checkListData);
-      sessionStorage.setItem("checkListMock", checkListMock);
+      setDataInSessionStorage(checkListData);
     }
   };
 
@@ -87,9 +89,11 @@ const ThirdSteps = (props: Props) => {
         <img src={img} alt={title} />
       </i>
       <div className={styles.text}>
-        <p>{title}</p>
+        <p>
+          {title}
+        </p>
         <ul className={styles.item_list}>
-          {items.map((el) => {
+          {items.map(el => {
             return (
               <li
                 key={el.id}
@@ -98,9 +102,9 @@ const ThirdSteps = (props: Props) => {
                 }}
               >
                 <div
-                  className={`${styles.text_item_wrap} ${
-                    el.id === changeStyle ? styles.selected_data : ""
-                  }`}
+                  className={`${styles.text_item_wrap} ${el.id === changeStyle
+                    ? styles.selected_data
+                    : ""}`}
                 >
                   {el.title}
                 </div>
