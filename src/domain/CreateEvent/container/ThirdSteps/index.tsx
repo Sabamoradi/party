@@ -6,7 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/useDispatch";
 import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
 import { eventsItem, checkListData } from "../../../../configs/type";
-import { checkLocalStorageData } from "../../../../utils/checkLocalStorageData";
+import {
+  checkLocalStorageData,
+  setLocalStorageData
+} from "../../../../utils/checkLocalStorageData";
+import {
+  checkSessionStorageData,
+  setDataInSessionStorage
+} from "../../../../utils/checkSessionStorageData";
 
 interface Item {
   id: number;
@@ -41,9 +48,7 @@ const ThirdSteps = (props: Props) => {
   };
   const arrangeData = () => {
     let eventsItem: eventsItem[] = checkLocalStorageData();
-
-    let getSessionData: any = sessionStorage.getItem("checkListMock");
-    let checkListData: checkListData[] = JSON.parse(getSessionData);
+    let checkListData: checkListData[] = checkSessionStorageData();
 
     const data = {
       dataId: eventsItem ? eventsItem.length : 0,
@@ -57,9 +62,7 @@ const ThirdSteps = (props: Props) => {
       checkList: checkListData
     };
     eventsItem.push(data);
-
-    let eventsItemMock = JSON.stringify(eventsItem);
-    localStorage.setItem("eventsItem", eventsItemMock);
+    setLocalStorageData(eventsItem);
   };
   const checkItem = (id: number, title: string, sessionTitle: string) => {
     if (id === changeStyle) {
@@ -74,11 +77,9 @@ const ThirdSteps = (props: Props) => {
         value: title
       };
 
-      const getSessionData: any = sessionStorage.getItem("checkListMock");
-      const checkListData: checkListData[] = JSON.parse(getSessionData) || [];
+      const checkListData: checkListData[] = checkSessionStorageData();
       checkListData.push(sessionData);
-      let checkListMock = JSON.stringify(checkListData);
-      sessionStorage.setItem("checkListMock", checkListMock);
+      setDataInSessionStorage(checkListData);
     }
   };
 
