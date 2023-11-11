@@ -14,7 +14,7 @@
     }
     .btn_wrapper {
       width: 35%;
-      .btn_custom{
+      .btn_custom {
         font-size: toRem(14);
         background-color: $gray-1c;
       }
@@ -39,6 +39,22 @@
         font-size: toRem(12);
         font-weight: 400;
         margin: toRem(8) 0 toRem(16) 0;
+      }
+      .left_bottom {
+        display: flex;
+        .wrapper {
+          &:first-child {
+            padding-right: toRem(10);
+          }
+          .days {
+            font-size: toRem(16);
+            font-weight: 700;
+          }
+          .title {
+            font-size: toRem(12);
+            font-weight: 400;
+          }
+        }
       }
     }
   }

@@ -41,11 +41,23 @@ const HomeSecond = () => {
                 onClick={() => navigate(`/checkList/${el.dataId}`)}
               >
                 <div className={styles.left}>
-                  <h6>{el.eventName}</h6>
-                  <p>
-                    {getDays(el.date)} {getDays(el.date) > 1 ? "Days" : "Day"}{" "}
-                    to go
-                  </p>
+                  <div className={styles.left_top}>
+                    <h6>{el.eventName}</h6>
+                    <p>
+                      {getDays(el.date)} {getDays(el.date) > 1 ? "Days" : "Day"}{" "}
+                      to go
+                    </p>
+                  </div>
+                  {/* <div className={styles.left_bottom}>
+                    <div className={styles.wrapper}>
+                      <p className={styles.days}></p>
+                      <p className={styles.title}>Done</p>
+                    </div>
+                    <div className={styles.wrapper}>
+                      <p className={styles.days}></p>
+                      <p className={styles.title}>Done</p>
+                    </div>
+                  </div> */}
                 </div>
                 <div className={styles.right}>
                   <img src={calenderImg} alt="img" />
