@@ -15,5 +15,6 @@ export const localTexts = {
   createNew: "Create New",
   previousHouseParties: "Previous House Parties",
   budget: "Budget",
-  checkList: "CheckList"
+  checkList: "CheckList",
+  submit:"SUBMIT"
 };

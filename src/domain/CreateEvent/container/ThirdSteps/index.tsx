@@ -8,11 +8,11 @@ import { set_StepEvent, selectStep_Event } from "../../../../store/Event/slice";
 import { eventsItem, checkListData } from "../../../../configs/type";
 import {
   checkLocalStorageData,
-  setLocalStorageData
+  setLocalStorageData,
 } from "../../../../utils/checkLocalStorageData";
 import {
   checkSessionStorageData,
-  setDataInSessionStorage
+  setDataInSessionStorage,
 } from "../../../../utils/checkSessionStorageData";
 
 interface Item {
@@ -59,7 +59,7 @@ const ThirdSteps = (props: Props) => {
       date: sessionStorage.getItem("date"),
       time: sessionStorage.getItem("time"),
       eventColor: sessionStorage.getItem("eventColor") || "",
-      checkList: checkListData
+      checkList: checkListData,
     };
     eventsItem.push(data);
     setLocalStorageData(eventsItem);
@@ -74,7 +74,7 @@ const ThirdSteps = (props: Props) => {
       let sessionData: any = {
         done: false,
         title: sessionTitle,
-        value: title
+        value: title,
       };
 
       const checkListData: checkListData[] = checkSessionStorageData();
@@ -89,11 +89,9 @@ const ThirdSteps = (props: Props) => {
         <img src={img} alt={title} />
       </i>
       <div className={styles.text}>
-        <p>
-          {title}
-        </p>
+        <p>{title}</p>
         <ul className={styles.item_list}>
-          {items.map(el => {
+          {items.map((el) => {
             return (
               <li
                 key={el.id}
@@ -102,9 +100,9 @@ const ThirdSteps = (props: Props) => {
                 }}
               >
                 <div
-                  className={`${styles.text_item_wrap} ${el.id === changeStyle
-                    ? styles.selected_data
-                    : ""}`}
+                  className={`${styles.text_item_wrap} ${
+                    el.id === changeStyle ? styles.selected_data : ""
+                  }`}
                 >
                   {el.title}
                 </div>
@@ -116,7 +114,7 @@ const ThirdSteps = (props: Props) => {
 
       <div className={styles.btn_wrapper}>
         <Button
-          title={localTexts.next}
+          title={select_step === "8" ? localTexts.submit : localTexts.next}
           disabled={selectedItem ? false : true}
           onClick={() => setData()}
         />
