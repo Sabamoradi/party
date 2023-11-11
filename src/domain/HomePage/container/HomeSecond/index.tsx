@@ -5,6 +5,7 @@ import { localTexts } from "../../../../locals/text";
 import { useAppSelector } from "../../../../hooks/useDispatch";
 import { selectLater_Events } from "../../../../store/Event/slice";
 import moment from "moment";
+import { checkListData } from "../../../../configs/type";
 
 const img = require("../../../../assets/images/svg/checklist.svg").default;
 const calenderImg = require("../../../../assets/images/svg/date.svg").default;
@@ -17,6 +18,26 @@ const HomeSecond = () => {
     const dayNumber = moment(`${date}`, "YYYY-MM-DD").format("DD");
     const todayDay = moment(new Date()).format("DD");
     return Number(dayNumber) - Number(todayDay);
+  };
+
+  const getDone = (checklist: checkListData[]) => {
+    let counter = 0;
+    checklist.forEach((el) => {
+      if (el.done) {
+        counter = ++counter;
+      }
+    });
+    return counter;
+  };
+
+  const getToDo = (checklist: checkListData[]) => {
+    let counter = 0;
+    checklist.forEach((el) => {
+      if (!el.done) {
+        counter = ++counter;
+      }
+    });
+    return counter;
   };
 
   return (
@@ -48,16 +69,16 @@ const HomeSecond = () => {
                       to go
                     </p>
                   </div>
-                  {/* <div className={styles.left_bottom}>
+                  <div className={styles.left_bottom}>
                     <div className={styles.wrapper}>
-                      <p className={styles.days}></p>
+                      <p className={styles.days}>{getDone(el.checkList)}</p>
                       <p className={styles.title}>Done</p>
                     </div>
                     <div className={styles.wrapper}>
-                      <p className={styles.days}></p>
+                      <p className={styles.days}>{getToDo(el.checkList)}</p>
                       <p className={styles.title}>Done</p>
                     </div>
-                  </div> */}
+                  </div>
                 </div>
                 <div className={styles.right}>
                   <img src={calenderImg} alt="img" />
