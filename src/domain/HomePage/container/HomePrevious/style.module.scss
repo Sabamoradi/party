@@ -1,8 +1,8 @@
 @use "src/styles/main.scss" as *;
 
 .previous_container {
-  margin-top: toRem(24);
-  .title{
+  margin: toRem(24) 0 toRem(50) 0;
+  .title {
     font-size: toRem(16);
     font-weight: 700;
   }
@@ -33,13 +33,14 @@
         margin: toRem(8) 0;
       }
       .time_wrapper {
-        .date , .time {
+        .date,
+        .time {
           font-size: toRem(14);
           font-weight: 400;
           color: $gray-ad;
         }
-        .time{
-          margin-top: toRem(8)
+        .time {
+          margin-top: toRem(8);
         }
       }
       .previous_item_wrap {
